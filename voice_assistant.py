@@ -35,19 +35,18 @@ def speak(audio):
  
 def wishMe():
     hour = int(datetime.datetime.now().hour)
-    if hour>= 0 and hour<12:
+    if hour >= 0 and hour < 12:
         speak("Good Morning Sir !")
   
-    elif hour>= 12 and hour<18:
+    elif hour>= 12 and hour < 18:
         speak("Good Afternoon Sir !")  
   
     else:
         speak("Good Evening Sir !") 
   
-    assname =("Jarvis 1 point o")
+    assname = ("My name is Jarvis")
     speak("I am your Assistant")
     speak(assname)
-     
  
 def username():
     speak("What should i call you sir")
@@ -56,9 +55,9 @@ def username():
     speak(uname)
     columns = shutil.get_terminal_size().columns
      
-    print("#####################".center(columns))
-    print("Welcome Mr.", uname.center(columns))
-    print("#####################".center(columns))
+    print("#####################")
+    print("Welcome Mr.", uname)
+    print("#####################")
      
     speak("How can i Help you, Sir")
  
@@ -74,7 +73,7 @@ def takeCommand():
   
     try:
         print("Recognizing...")   
-        query = r.recognize_google(audio, language ='en-in')
+        query = r.recognize_google(audio, language ='en-vn')
         print(f"User said: {query}\n")
   
     except Exception as e:
@@ -134,20 +133,16 @@ if __name__ == '__main__':
         elif 'play music' in query or "play song" in query:
             speak("Here you go with music")
             # music_dir = "G:\\Song"
-            music_dir = "C:\\Users\\GAURAV\\Music"
+            music_dir = "C:\\Users\\kodom\\Music" ## fix path
             songs = os.listdir(music_dir)
             print(songs)   
             random = os.startfile(os.path.join(music_dir, songs[1]))
  
         elif 'the time' in query:
-            strTime = datetime.datetime.now().strftime("% H:% M:% S")   
+            strTime = datetime.datetime.now().strftime("%H:%M")   
             speak(f"Sir, the time is {strTime}")
  
-        elif 'open opera' in query:
-            codePath = r"C:\\Users\\GAURAV\\AppData\\Local\\Programs\\Opera\\launcher.exe"
-            os.startfile(codePath)
- 
-        elif 'email to gaurav' in query:
+        elif 'email to Tachi' in query:
             try:
                 speak("What should I say?")
                 content = takeCommand()
@@ -222,42 +217,27 @@ if __name__ == '__main__':
             speak("If you talk then definitely your human.")
  
         elif "why you came to world" in query:
-            speak("Thanks to Gaurav. further It's a secret")
- 
-        elif 'power point presentation' in query:
-            speak("opening Power Point presentation")
-            power = r"C:\\Users\\GAURAV\\Desktop\\Minor Project\\Presentation\\Voice Assistant.pptx"
-            os.startfile(power)
+            speak("Thanks to John. further It's a secret")
  
         elif 'is love' in query:
             speak("It is 7th sense that destroy all other senses")
  
         elif "who are you" in query:
-            speak("I am your virtual assistant created by Gaurav")
- 
-        elif 'reason for you' in query:
-            speak("I was created as a Minor project by Mister Gaurav ")
+            speak("I am your virtual assistant created by Tachi")
  
         elif 'change background' in query:
-            ctypes.windll.user32.SystemParametersInfoW(20,
-                                                       0,
-                                                       "Location of wallpaper",
-                                                       0)
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, "Location of wallpaper", 0)
             speak("Background changed successfully")
- 
-        elif 'open bluestack' in query:
-            appli = r"C:\\ProgramData\\BlueStacks\\Client\\Bluestacks.exe"
-            os.startfile(appli)
  
         elif 'news' in query:
              
             try:
-                jsonObj = urlopen('''https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\''')
+                jsonObj = urlopen('''https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of Vietnam Api key\\''')
                 data = json.load(jsonObj)
                 i = 1
                  
                 speak('here are some top news from the times of india')
-                print('''=============== TIMES OF INDIA ============'''+ '\n')
+                print('''=============== TIMES OF VIETNAM ============'''+ '\n')
                  
                 for item in data['articles']:
                      
@@ -287,7 +267,7 @@ if __name__ == '__main__':
             a = int(takeCommand())
             time.sleep(a)
             print(a)
- 
+  
         elif "where is" in query:
             query = query.replace("where is", "")
             location = query
@@ -343,20 +323,13 @@ if __name__ == '__main__':
                                        expected_size =(total_length / 1024) + 1):
                     if ch:
                       Pypdf.write(ch)
-                     
-        # NPPR9-FWDCX-D2C8J-H872K-2YT43
-        elif "jarvis" in query:
-             
-            wishMe()
-            speak("Jarvis 1 point o in your service Mister")
-            speak(assname)
  
         elif "weather" in query:
              
             # Google Open weather website
             # to get API of Open weather
-            api_key = "Api key"
-            base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
+            api_key = "7d1c4e5264f624a22b82dd0008e77e05"
+            base_url = "http://api.openweathermap.org/data/2.5/weather?"
             speak(" City name ")
             print("City name : ")
             city_name = takeCommand()
